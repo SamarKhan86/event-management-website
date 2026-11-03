@@ -32,7 +32,7 @@ export function initRegistrationForm(eventRecord, formElement, confirmationConta
   // Display selected event name label
   const selectedEventNameEl = document.querySelector("#selectedEventName");
   if (selectedEventNameEl) {
-    selectedEventNameEl.textContent = eventRecord.title;
+    selectedEventNameEl.textContent = eventRecord.displayTitle || eventRecord.title;
   }
 
   // Real-time blur validation for each field

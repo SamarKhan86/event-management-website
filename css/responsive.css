@@ -22,13 +22,19 @@
    Tab View / Tablet Breakpoints (<= 1024px)
    ========================================================================== */
 @media (max-width: 1024px) {
-  /* Set up the Only Mask View for Tab View */
-  .site-header .brand-text {
-    display: none !important;
+  .site-header .brand-full {
+    display: none;
   }
-  .site-header .brand-mask {
+  .site-header .brand-mask-compact {
+    display: block;
     width: 38px;
     height: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -38,7 +44,7 @@
 @media (max-width: 992px) {
   .hero-section {
     min-height: auto;
-    padding: 4.5rem 0 3.5rem 0;
+    padding: 3.5rem 0;
   }
 
   .featured-card {
@@ -211,8 +217,12 @@
    Common Mobile (<= 480px) & Small Mobile (360px - 390px)
    ========================================================================== */
 @media (max-width: 480px) {
+  .hero-section {
+    padding: 3rem 0;
+  }
+
   .hero-title {
-    font-size: 2.1rem;
+    font-size: 2rem;
   }
 
   .hero-cta-group {
@@ -240,6 +250,23 @@
 
   .detail-banner-actions .btn {
     width: 100%;
+  }
+
+  .detail-banner-wrap {
+    min-height: 190px;
+    max-height: 240px;
+  }
+
+  .detail-title {
+    font-size: 1.55rem;
+  }
+
+  .registration-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .form-title {
+    font-size: 1.65rem;
   }
 
   .countdown-unit {

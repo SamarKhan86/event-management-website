@@ -5,8 +5,8 @@
  * live search, category filtering, sorting, and event card rendering.
  */
 
-import { events } from "../data/events.js";
-import { filterEvents, getUniqueCategories } from "../modules/search-filter.js";
+import { events, discoveryCategories } from "../data/events.js";
+import { filterEvents } from "../modules/search-filter.js";
 import { initTheme } from "../modules/theme.js";
 import { startCountdown } from "../modules/countdown.js";
 
@@ -19,20 +19,17 @@ const state = {
 
 // Map each category to an appropriate SVG line icon
 const categoryIcons = {
-  "Technology & Engineering": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>`,
-  "Technology & Society": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M2 12h20"/></svg>`,
-  "Digital Humanities": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
-  "Social Sciences": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
-  "Creative Technology": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
-  "Music": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`,
+  "Technology & Innovation": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>`,
+  "Arts & Culture": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
   "Gaming & Interactive": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 12h4M8 10v4M15 13h.01M18 11h.01"/></svg>`,
-  "Anime & Film": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>`,
-  "Japanese Pop Culture": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 0 0 20 7 7 0 0 0 0-20z"/></svg>`
+  "Music & Performance": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`,
+  "Society & Humanities": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   initMobileNav();
+  initActiveNavigation();
   renderCategoryGrid();
   renderFeaturedEvent();
   initSearchAndFilterControls();
@@ -63,22 +60,107 @@ function initMobileNav() {
 }
 
 /**
+ * Active Navigation Indicator & Scroll Spy
+ * Dynamically shifts the gold underline indicator as the user visits sections
+ */
+function initActiveNavigation() {
+  const navLinks = document.querySelectorAll(".primary-nav .nav-link");
+  const sectionIds = ["top", "categoriesSection", "featuredSection", "eventsSection", "aboutSection"];
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+  function setActive(targetId) {
+    navLinks.forEach(link => {
+      const href = link.getAttribute("href");
+      if (href === `#${targetId}` || (targetId === "top" && href === "#top")) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  }
+
+  let isNavClicking = false;
+  let navClickTimeout = null;
+
+  // Click handler: instantly updates active underline
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      const targetId = link.getAttribute("href")?.replace("#", "");
+      if (targetId) {
+        setActive(targetId);
+        isNavClicking = true;
+        clearTimeout(navClickTimeout);
+        navClickTimeout = setTimeout(() => {
+          isNavClicking = false;
+        }, 1200);
+      }
+    });
+  });
+
+  // Scroll spy: observes scroll position and moves underline to the section in view
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (isNavClicking) return;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveOnScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  function updateActiveOnScroll() {
+    // If near the top (within hero section)
+    const heroSection = document.querySelector(".hero-section");
+    const heroHeight = heroSection ? heroSection.offsetHeight : 500;
+
+    if (window.scrollY < heroHeight * 0.5) {
+      setActive("top");
+      return;
+    }
+
+    // Near the bottom of the document: activate the final section (About)
+    const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 100);
+    if (isAtBottom && sections.length > 0) {
+      setActive(sections[sections.length - 1].id);
+      return;
+    }
+
+    // Trigger when section top enters upper viewport
+    const triggerY = window.scrollY + (window.innerHeight * 0.35);
+
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const sec = sections[i];
+      if (sec.id === "top") continue;
+      if (sec.offsetTop <= triggerY) {
+        setActive(sec.id);
+        break;
+      }
+    }
+  }
+
+  // Initial call on load
+  updateActiveOnScroll();
+}
+
+/**
  * Renders the "Explore by Category" tiles
  */
 function renderCategoryGrid() {
   const container = document.querySelector("#categoryGrid");
   if (!container) return;
 
-  const categories = getUniqueCategories(events);
+  const categories = discoveryCategories;
   
   // Count events in each category
   const counts = {};
   events.forEach(e => {
-    counts[e.category] = (counts[e.category] || 0) + 1;
+    counts[e.discoveryCategory] = (counts[e.discoveryCategory] || 0) + 1;
   });
 
   container.innerHTML = categories.map(cat => {
-    const icon = categoryIcons[cat] || categoryIcons["Creative Technology"];
+    const icon = categoryIcons[cat] || categoryIcons["Technology & Innovation"];
     const count = counts[cat] || 0;
     return `
       <button type="button" class="category-tile" data-category="${escapeHtml(cat)}">
@@ -137,7 +219,7 @@ function renderFeaturedEvent() {
           </span>
         </div>
         <h3 class="featured-title">
-          <a href="event.html?id=${featured.id}">${escapeHtml(featured.title)}</a>
+          <a href="event.html?id=${featured.id}">${escapeHtml(featured.displayTitle || featured.title)}</a>
         </h3>
         <p class="featured-desc">${escapeHtml(featured.shortDescription)}</p>
         
@@ -190,7 +272,7 @@ function initSearchAndFilterControls() {
 
   // Populate category select options
   if (categorySelect) {
-    const categories = getUniqueCategories(events);
+    const categories = discoveryCategories;
     categorySelect.innerHTML = `
       <option value="all">All Categories</option>
       ${categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("")}
@@ -300,22 +382,26 @@ function renderEvents() {
 
     return `
       <article class="event-card" data-id="${item.id}">
-        <div class="card-media">
-          <img 
-            src="${item.image}" 
-            alt="${escapeHtml(item.title)} poster" 
-            class="card-img ${isKIIT ? 'poster-fit' : ''}" 
-            loading="lazy"
-          />
-          <div class="card-badges">
+          <div class="card-header">
             <span class="badge badge-category">${escapeHtml(item.category)}</span>
-            <span class="badge ${isKIIT ? 'badge-kiit' : 'badge-concept'}">
-              ${isKIIT ? 'KIIT LISTING' : 'K EXPLORE CONCEPT'}
-            </span>
+            <span class="badge badge-kiit">KIIT LISTING</span>
           </div>
+          <div class="card-media">
+          <a href="event.html?id=${item.id}" class="card-image-link" aria-label="View details for ${escapeHtml(item.displayTitle || item.title)}">
+            <img
+              src="${item.image}"
+              alt="${escapeHtml(item.title)} poster"
+              class="card-img ${isKIIT ? 'poster-fit' : ''}"
+              loading="lazy"
+            />
+          </a>
         </div>
 
         <div class="card-content">
+          <h3 class="card-title">
+            <a href="event.html?id=${item.id}">${escapeHtml(item.displayTitle || item.title)}</a>
+          </h3>
+
           <div class="card-meta">
             <div class="meta-item">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -326,10 +412,6 @@ function renderEvents() {
               <span>${escapeHtml(item.venue)}</span>
             </div>
           </div>
-
-          <h3 class="card-title">
-            <a href="event.html?id=${item.id}">${escapeHtml(item.title)}</a>
-          </h3>
 
           <p class="card-desc">${escapeHtml(item.shortDescription)}</p>
 

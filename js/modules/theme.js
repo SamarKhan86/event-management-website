@@ -2,7 +2,7 @@
  * WAYFARER - Theme Management Module
  * 
  * Manages switching between Dark Theme (primary, default)
- * and Light Parchment Theme (companion), with localStorage persistence.
+ * and Light Parchment Theme (default), with localStorage persistence.
  */
 
 import { getStoredTheme, setStoredTheme } from "./storage.js";
@@ -15,7 +15,7 @@ const THEME_LIGHT = "light";
  * @returns {'dark' | 'light'}
  */
 export function getCurrentTheme() {
-  return document.documentElement.getAttribute("data-theme") || THEME_DARK;
+  return document.documentElement.getAttribute("data-theme") || THEME_LIGHT;
 }
 
 /**
@@ -64,9 +64,9 @@ function updateThemeToggleButtons(theme) {
  * Initializes theme system on page load.
  */
 export function initTheme() {
-  // Check stored preference or default to dark
+  // Check stored preference or default to the light parchment theme.
   const stored = getStoredTheme();
-  const initialTheme = stored === THEME_LIGHT ? THEME_LIGHT : THEME_DARK;
+  const initialTheme = stored === THEME_DARK ? THEME_DARK : THEME_LIGHT;
   applyTheme(initialTheme);
 
   // Attach event listener to theme toggle buttons

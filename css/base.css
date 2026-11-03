@@ -144,10 +144,10 @@ button, input, select, textarea {
   outline-offset: 3px;
 }
 
-/* Skip to Content for Screen Readers */
+/* Skip to Content for Screen Readers (Positioned securely offscreen when idle) */
 .skip-link {
   position: absolute;
-  top: -40px;
+  top: -9999px;
   left: 1rem;
   background: var(--color-accent);
   color: #111318;
@@ -155,11 +155,13 @@ button, input, select, textarea {
   font-weight: 600;
   z-index: 1000;
   border-radius: var(--radius-sm);
-  transition: top 0.2s ease;
+  transition: transform 0.2s ease;
+  transform: translateY(-200%);
 }
 
 .skip-link:focus {
   top: 1rem;
+  transform: translateY(0);
 }
 
 /* Container */

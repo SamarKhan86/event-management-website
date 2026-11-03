@@ -200,7 +200,8 @@
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 1.5rem 1rem;
+  min-height: 124px;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -265,7 +266,8 @@
 
 .featured-image-wrap {
   position: relative;
-  min-height: 400px;
+  min-height: 300px;
+  max-height: 390px;
   background-color: #0b0d10;
   display: flex;
   align-items: center;
@@ -297,7 +299,7 @@
 }
 
 .featured-body {
-  padding: 2.5rem;
+  padding: 1.75rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -311,7 +313,7 @@
 }
 
 .featured-title {
-  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
   line-height: 1.25;
   margin-bottom: 1rem;
 }
@@ -324,14 +326,14 @@
   color: var(--color-text-muted);
   font-size: 0.98rem;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.1rem;
 }
 
 .featured-meta-row {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.1rem;
   color: var(--color-text-muted);
   font-size: 0.92rem;
 }
@@ -352,7 +354,7 @@
   border: 1px solid var(--color-border);
   padding: 1rem 1.25rem;
   border-radius: var(--radius-md);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.1rem;
 }
 
 .countdown-title {
@@ -456,17 +458,26 @@
 }
 
 .card-media {
-  position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   background-color: #0b0d10;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image-link {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+  object-fit: contain;
+  padding: 0.75rem;
 }
 
 .card-img.poster-fit {
@@ -474,20 +485,15 @@
   padding: 0.75rem;
 }
 
-.event-card:hover .card-img {
-  transform: scale(1.05);
-}
-
-.card-badges {
-  position: absolute;
-  top: 0.85rem;
-  left: 0.85rem;
-  right: 0.85rem;
+.card-header {
+  min-height: 43px;
+  padding: 0.65rem 0.85rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  pointer-events: none;
+  background: var(--color-surface-raised);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .card-content {
@@ -509,7 +515,7 @@
 .card-title {
   font-size: 1.25rem;
   line-height: 1.35;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
   font-weight: 700;
 }
 
@@ -527,6 +533,10 @@
   line-height: 1.55;
   margin-bottom: 1.5rem;
   flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .card-footer {
@@ -619,13 +629,13 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .detail-banner-wrap {
   position: relative;
-  max-height: 450px;
-  min-height: 300px;
+  max-height: 300px;
+  min-height: 220px;
   background-color: #0c0e12;
   display: flex;
   align-items: center;
@@ -636,13 +646,13 @@
 .detail-banner-img {
   width: 100%;
   height: 100%;
-  max-height: 450px;
+  max-height: 300px;
   object-fit: cover;
 }
 
 .detail-banner-img.poster-fit {
   object-fit: contain;
-  padding: 1.5rem;
+  padding: 0.75rem;
 }
 
 .detail-banner-overlay {
@@ -653,26 +663,26 @@
 }
 
 .detail-hero-content {
-  padding: 2.5rem 3rem;
+  padding: 1.75rem 2.25rem;
   position: relative;
-  margin-top: -3rem;
+  margin-top: -1.75rem;
   z-index: 2;
 }
 
 .detail-title {
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.65rem, 2.6vw, 2.25rem);
   line-height: 1.2;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.25rem;
 }
 
 .detail-meta-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  padding: 1.5rem 0;
+  gap: 1rem;
+  padding: 1rem 0;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .detail-meta-item {
@@ -858,7 +868,7 @@
    Registration Form & Confirmation
    ========================================================================== */
 .registration-container {
-  max-width: 720px;
+  max-width: 640px;
   margin: 0 auto;
 }
 
@@ -866,28 +876,28 @@
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 3rem;
+  padding: 2rem;
   box-shadow: var(--shadow-lg);
 }
 
 .form-header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-title {
-  font-size: 2.2rem;
+  font-size: 1.9rem;
   margin-bottom: 0.5rem;
 }
 
 .form-event-target {
   color: var(--color-accent);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .form-label {
@@ -932,7 +942,7 @@
 }
 
 .form-submit-row {
-  margin-top: 2rem;
+  margin-top: 1.25rem;
 }
 
 .btn-block {
@@ -943,7 +953,7 @@
   font-size: 0.82rem;
   color: var(--color-text-muted);
   text-align: center;
-  margin-top: 1.25rem;
+  margin-top: 0.9rem;
   line-height: 1.5;
 }
 

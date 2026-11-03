@@ -24,7 +24,7 @@ export function filterEvents(events, { query = "", category = "all", sort = "dat
     const categoryMatches = 
       cleanCategory === "all" || 
       cleanCategory === "" || 
-      event.category.toLowerCase() === cleanCategory;
+      (event.discoveryCategory || event.category || "").toLowerCase() === cleanCategory;
 
     if (!categoryMatches) return false;
 
@@ -35,7 +35,7 @@ export function filterEvents(events, { query = "", category = "all", sort = "dat
     const inDesc = (event.shortDescription || "").toLowerCase().includes(cleanQuery);
     const inFullDesc = (event.description || "").toLowerCase().includes(cleanQuery);
     const inVenue = (event.venue || "").toLowerCase().includes(cleanQuery);
-    const inCat = (event.category || "").toLowerCase().includes(cleanQuery);
+    const inCat = `${event.category || ""} ${event.discoveryCategory || ""}`.toLowerCase().includes(cleanQuery);
 
     return inTitle || inDesc || inFullDesc || inVenue || inCat;
   });
@@ -75,7 +75,7 @@ export function sortEvents(events, sortMode = "date-asc") {
 export function getUniqueCategories(events) {
   const set = new Set();
   events.forEach(e => {
-    if (e.category) set.add(e.category);
+    if (e.discoveryCategory || e.category) set.add(e.discoveryCategory || e.category);
   });
   return Array.from(set).sort();
 }
