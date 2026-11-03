@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE settings
+.vscode/
+.idea/
+
+# Build output
+dist/
+
+# Documents not intended for repository
+*.docx
