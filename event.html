@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View event details and register for upcoming gatherings on WAYFARER.">
+  <title>Event Details & Registration — WAYFARER</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Application Entry Point -->
+  <script type="module" src="js/pages/event-detail.js"></script>
+</head>
+<body id="top">
+  <!-- Accessibility Skip Navigation -->
+  <a href="#mainContent" class="skip-link">Skip to main content</a>
+
+  <!-- Global Site Header -->
+  <header class="site-header" role="banner">
+    <div class="container header-container">
+      <!-- Brand Logo / Wordmark -->
+      <a href="index.html" class="brand" aria-label="WAYFARER Homepage">
+        <span class="brand-crest" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 19 8.5 19 15.5 12 22 5 15.5 5 8.5 12 2"/>
+            <circle cx="12" cy="12" r="3"/>
+            <line x1="12" y1="2" x2="12" y2="7"/>
+            <line x1="12" y1="17" x2="12" y2="22"/>
+          </svg>
+        </span>
+        <span class="brand-text">WAYFARER</span>
+      </a>
+
+      <!-- Primary Navigation Menu -->
+      <nav class="primary-nav" id="primaryNav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#categoriesSection" class="nav-link">Categories</a></li>
+          <li><a href="index.html#eventsSection" class="nav-link active">Events</a></li>
+          <li><a href="index.html#aboutSection" class="nav-link">About</a></li>
+        </ul>
+        <div class="mobile-cta-wrap hidden">
+          <a href="index.html#eventsSection" class="btn btn-primary">Browse Catalogue</a>
+        </div>
+      </nav>
+
+      <!-- Header Action Controls -->
+      <div class="header-actions">
+        <!-- Theme Toggle Button (Bonus BR-01) -->
+        <button 
+          type="button" 
+          class="theme-toggle" 
+          aria-label="Switch to Light Parchment Theme" 
+          aria-pressed="false"
+          title="Toggle Theme"
+        >
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <a href="index.html#eventsSection" class="btn btn-secondary">All Events</a>
+
+        <!-- Mobile Nav Hamburger Toggle -->
+        <button 
+          type="button" 
+          class="mobile-nav-toggle" 
+          id="mobileNavToggle" 
+          aria-label="Toggle navigation menu" 
+          aria-expanded="false" 
+          aria-controls="primaryNav"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Landmark -->
+  <main id="mainContent" class="container">
+    <!-- Dynamic Event Detail View Container (Populated by js/pages/event-detail.js) -->
+    <div id="eventDetailContainer">
+      <!-- Loading skeleton or populated event view -->
+    </div>
+
+    <!-- Registration Section -->
+    <section id="registrationSection" class="page-section" aria-labelledby="registrationHeading">
+      <div class="registration-container">
+        <!-- Registration Form Card -->
+        <div class="registration-card">
+          <div class="form-header">
+            <span class="badge badge-category" style="margin-bottom: 0.75rem;">Participant Registration</span>
+            <h2 id="registrationHeading" class="form-title">Reserve Your Spot</h2>
+            <p class="form-event-target" id="selectedEventName">Loading event title...</p>
+          </div>
+
+          <form id="registrationForm" novalidate>
+            <!-- Hidden Selected Event ID -->
+            <input type="hidden" id="eventId" name="eventId" value="" />
+
+            <!-- Participant Name Field -->
+            <div class="form-group">
+              <label for="participantName" class="form-label">
+                Full Name <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="participantName" 
+                name="participantName" 
+                class="form-control" 
+                placeholder="e.g. Alex Morgan"
+                autocomplete="name"
+                required
+                aria-describedby="participantNameError"
+              />
+              <span id="participantNameError" class="form-error-msg hidden" role="alert"></span>
+            </div>
+
+            <!-- Email Address Field -->
+            <div class="form-group">
+              <label for="email" class="form-label">
+                Email Address <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-control" 
+                placeholder="e.g. alex@example.com"
+                autocomplete="email"
+                required
+                aria-describedby="emailError"
+              />
+              <span id="emailError" class="form-error-msg hidden" role="alert"></span>
+            </div>
+
+            <!-- Phone Number Field -->
+            <div class="form-group">
+              <label for="phone" class="form-label">
+                Phone Number <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                class="form-control" 
+                placeholder="e.g. +91 98765 43210"
+                autocomplete="tel"
+                required
+                aria-describedby="phoneError"
+              />
+              <span id="phoneError" class="form-error-msg hidden" role="alert"></span>
+            </div>
+
+            <!-- Submit Button with duplicate click guard -->
+            <div class="form-submit-row">
+              <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitRegBtn">
+                <span>Complete Registration</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+
+            <!-- Honest Demonstration Notice -->
+            <p class="form-privacy-disclaimer">
+              <strong>College Assignment Demo:</strong> Registrations are persisted locally in your browser's Local Storage for project assessment. No external email or notification will be transmitted.
+            </p>
+          </form>
+
+          <!-- Success Confirmation Panel (Rendered dynamically by registration.js) -->
+          <div id="registrationConfirmation" class="hidden"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="brand">
+            <span class="brand-crest" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 19 8.5 19 15.5 12 22 5 15.5 5 8.5 12 2"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </span>
+            <span class="brand-text">WAYFARER</span>
+          </div>
+          <p class="footer-brand-desc">
+            An atmospheric event discovery and management platform. Explore university symposiums, technical exhibitions, and creative gatherings.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="index.html#categoriesSection">Explore Categories</a></li>
+            <li><a href="index.html#featuredSection">Featured Showcase</a></li>
+            <li><a href="index.html#eventsSection">Upcoming Events</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Academic Context</h3>
+          <ul class="footer-links">
+            <li><a href="https://kiit.ac.in/events/" target="_blank" rel="noopener noreferrer">Official KIIT Events ↗</a></li>
+            <li><a href="https://kiit.ac.in" target="_blank" rel="noopener noreferrer">KIIT University Portal ↗</a></li>
+            <li><a href="https://ksol.kiit.ac.in" target="_blank" rel="noopener noreferrer">KIIT School of Liberal Studies ↗</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-notice">
+          WAYFARER &copy; 2026. Built with Vanilla HTML5, CSS3 &amp; JavaScript for K Explore Web Designing Assignment.
+        </p>
+        <p class="footer-notice text-muted">
+          All client-side registrations are demo records stored locally in your browser.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
