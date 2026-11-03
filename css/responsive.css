@@ -19,6 +19,20 @@
 }
 
 /* ==========================================================================
+   Tab View / Tablet Breakpoints (<= 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  /* Set up the Only Mask View for Tab View */
+  .site-header .brand-text {
+    display: none !important;
+  }
+  .site-header .brand-mask {
+    width: 38px;
+    height: 40px;
+  }
+}
+
+/* ==========================================================================
    Tablet Breakpoints (<= 992px)
    ========================================================================== */
 @media (max-width: 992px) {
