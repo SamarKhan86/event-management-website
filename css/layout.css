@@ -147,6 +147,15 @@
   align-items: center;
   justify-content: center;
 }
+/* Improve hamburger visibility in light theme */
+[data-theme="light"] .site-header .mobile-nav-toggle {
+  color: #E8C98D;
+  border-color: rgba(232, 201, 141, 0.45);
+}
+
+[data-theme="light"] .site-header .mobile-nav-toggle:hover {
+  background-color: rgba(232, 201, 141, 0.10);
+}
 
 /* Hero Section */
 .hero-section {

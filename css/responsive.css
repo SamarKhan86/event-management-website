@@ -120,6 +120,15 @@
     font-size: 1.05rem;
   }
 
+  /* Fix mobile navigation text visibility in light mode */
+  [data-theme="light"] .site-header .primary-nav .nav-link {
+        color: var(--color-text-muted);
+      }
+
+      [data-theme="light"] .site-header .primary-nav .nav-link:hover,
+      [data-theme="light"] .site-header .primary-nav .nav-link.active {
+            color: var(--color-text);
+          }
   .header-actions .btn {
     display: none; /* Keep theme toggle in header, move full CTA to menu */
   }
