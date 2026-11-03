@@ -71,8 +71,9 @@
   transform: scale(1.06);
 }
 
-[data-theme="light"] .brand-mask {
-  content: url("../assets/images/ui/logo-mask-dark.png");
+/* Keep the gold emblem on the dark navigation header */
+[data-theme="light"] .site-header .brand-mask-compact {
+    content: url("../assets/images/ui/logo-mask.png");
 }
 
 .brand-text {
