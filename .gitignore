@@ -26,3 +26,6 @@ dist/
 
 # Documents not intended for repository
 *.docx
+
+# Personal files 
+/local-only/
