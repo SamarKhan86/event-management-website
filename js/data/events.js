@@ -1,0 +1,160 @@
+/**
+ * WAYFARER - Single Source of Truth for Event Records
+ * 
+ * Contains all 9 seed events:
+ * - 4 verified academic conferences from KIIT Deemed to be University
+ * - 5 curated fictional K Explore demonstration concepts reflecting personal interests
+ * 
+ * Note: This module only exports data. It contains no DOM or form logic.
+ */
+
+export const events = [
+  {
+    id: "icamme-2026",
+    title: "International Conference on Advanced Materials and Manufacturing Engineering (ICAMME 2026)",
+    category: "Technology & Engineering",
+    date: "2026-12-04",
+    endDate: "2026-12-05",
+    startTime: "08:00",
+    endTime: "18:00",
+    venue: "Campus-6 Auditorium, KIIT",
+    image: "assets/images/events/icamme-2026.jpg",
+    shortDescription: "Global conference bringing together researchers in materials science, green metallurgy, and precision engineering.",
+    description: "An international conference on advanced materials and manufacturing engineering, hosted by the School of Mechanical Engineering at KIIT Deemed to be University. The event unites researchers, academicians, and industry specialists across materials science, green manufacturing, computational modelling, and precision manufacturing. Features keynote lectures from international researchers and peer-reviewed technical sessions.",
+    featured: true,
+    registrationOpen: true,
+    sourceType: "kiit-verified",
+    sourceUrl: "https://kiit.ac.in/event/international-conference-on-advanced-materials-and-manufacturing-engineering/"
+  },
+  {
+    id: "iihtc-2026",
+    title: "International Conference on Innovations in Technology for Humanity (IIHTC 2026)",
+    category: "Technology & Society",
+    date: "2026-12-17",
+    endDate: "2027-02-19",
+    startTime: "09:00",
+    endTime: "17:30",
+    venue: "Campus-6 Auditorium, KIIT",
+    image: "assets/images/events/iihtc-2026.jpg",
+    shortDescription: "Global conference exploring technology-driven solutions for poverty alleviation, environmental sustainability, and educational access.",
+    description: "A premier global conference uniting technological innovation and humanitarian action, focusing on underserved communities and the Indic context. Core themes include poverty alleviation, equitable educational technology access, cultural preservation, sustainable resource distribution, and healthcare technologies.",
+    featured: false,
+    registrationOpen: true,
+    sourceType: "kiit-verified",
+    sourceUrl: "https://kiit.ac.in/event/international-conference-on-innovations-in-technology-for-humanity-iihtc-2026/"
+  },
+  {
+    id: "dharti-2026",
+    title: "DHARTI 2026 – Decolonising the Digital: Social Justice, Inclusion, and Equitable Knowledge Production",
+    category: "Digital Humanities",
+    date: "2026-12-18",
+    endDate: "2026-12-20",
+    startTime: "08:00",
+    endTime: "18:30",
+    venue: "Campus-3 Auditorium, KIIT",
+    image: "assets/images/events/dharti-2026.jpeg",
+    shortDescription: "Biennial Digital Humanities Alliance conference interrogating digital power structures, multilingual archives, and inclusive knowledge.",
+    description: "The biennial conference of the Digital Humanities Alliance for Research and Teaching Innovations (DHARTI), hosted by the School of Liberal Studies at KIIT. The conference critically examines how digital technologies intersect with social justice, multilingual archives, indigenous heritage preservation, and equitable knowledge production.",
+    featured: false,
+    registrationOpen: true,
+    sourceType: "kiit-verified",
+    sourceUrl: "https://kiit.ac.in/event/dharti-2026-decolonising-the-digital-social-justice-inclusion-and-equitable-knowledge-production/"
+  },
+  {
+    id: "all-india-sociological-conference-2026",
+    title: "51st All India Sociological Conference",
+    category: "Social Sciences",
+    date: "2026-12-27",
+    endDate: "2026-12-29",
+    startTime: "08:00",
+    endTime: "19:00",
+    venue: "Campus-3 Auditorium, KIIT",
+    image: "assets/images/events/all-india-sociological-conference-2026.jpeg",
+    shortDescription: "Annual national gathering of sociologists examining culture, region, and pedagogy in contemporary Indian society.",
+    description: "The flagship annual conference of the Indian Sociological Society (ISS) celebrated during its Platinum Jubilee Year. Themed 'Culture, Region and Pedagogy: Exploring the Future of Indian Sociology', organized by the Department of Sociology, School of Liberal Studies, KIIT. Bringing together scholars and students to discuss contemporary cultural transformations and sociology education in India.",
+    featured: false,
+    registrationOpen: true,
+    sourceType: "kiit-verified",
+    sourceUrl: "https://kiit.ac.in/event/51st-all-india-sociological-conference/"
+  },
+  {
+    id: "signal-and-silence",
+    title: "Signal & Silence",
+    category: "Creative Technology",
+    date: "2027-01-09",
+    endDate: "",
+    startTime: "10:00",
+    endTime: "19:00",
+    venue: "The Signal Hall",
+    image: "assets/images/events/signal-and-silence.jpg",
+    shortDescription: "Hands-on exhibition of student-built interactive tools, sound-reactive installations, and experimental visual interfaces.",
+    description: "A hands-on showcase of student-built tools, experimental interfaces, and sound-reactive installations. Visitors can explore small interactive projects, meet their makers, and see firsthand how creative code, embedded physical computing, and ambient visual design converge.",
+    featured: false,
+    registrationOpen: true,
+    sourceType: "k-explore-demo"
+  },
+  {
+    id: "afterglow-at-eight",
+    title: "Afterglow at Eight",
+    category: "Music",
+    date: "2027-01-15",
+    endDate: "",
+    startTime: "18:30",
+    endTime: "22:00",
+    venue: "Courtyard Stage",
+    image: "assets/images/events/afterglow-at-eight.jpg",
+    shortDescription: "Intimate indie music performance featuring acoustic sets, atmospheric guitars, and textured alternative songcraft.",
+    description: "An evening of independent music that transitions gently from stripped-back acoustic sets to textured alternative soundscapes. The atmosphere is curated to feel warm and personal, with warm amber lighting and close-up listening rather than stadium spectacle.",
+    featured: false,
+    registrationOpen: true,
+    sourceType: "k-explore-demo"
+  },
+  {
+    id: "the-last-checkpoint",
+    title: "The Last Checkpoint",
+    category: "Gaming & Interactive",
+    date: "2027-01-16",
+    endDate: "",
+    startTime: "14:00",
+    endTime: "20:00",
+    venue: "The Arcade Lab",
+    image: "assets/images/events/the-last-checkpoint.jpg",
+    shortDescription: "Celebration of indie games featuring playable atmospheric prototypes, developer talks, and precision exploration challenges.",
+    description: "A gathering for players and indie game creators. Explore atmospheric worlds, play original prototypes from student developers, and take part in friendly exploration and platforming challenges. Features informal talks on environmental world-building and sound design in indie titles.",
+    featured: true,
+    registrationOpen: true,
+    sourceType: "k-explore-demo"
+  },
+  {
+    id: "frames-in-the-moonlight",
+    title: "Frames in the Moonlight",
+    category: "Anime & Film",
+    date: "2027-01-23",
+    endDate: "",
+    startTime: "18:00",
+    endTime: "21:30",
+    venue: "Black Box Screening Room",
+    image: "assets/images/events/frames-in-the-moonlight.jpg",
+    shortDescription: "Curated anime film screening and cinematic discussion on animation direction, visual storytelling, and musical scoring.",
+    description: "A curated indie anime-film screening followed by a relaxed discussion about animation direction, music composition, character design, and visual storytelling. Hosted in a cozy black box screening space with atmospheric acoustics and lively conversation.",
+    featured: true,
+    registrationOpen: true,
+    sourceType: "k-explore-demo"
+  },
+  {
+    id: "lanterns-after-dusk",
+    title: "Lanterns After Dusk",
+    category: "Japanese Pop Culture",
+    date: "2027-02-06",
+    endDate: "",
+    startTime: "16:00",
+    endTime: "21:00",
+    venue: "The Lantern Courtyard",
+    image: "assets/images/events/lanterns-after-dusk.jpg",
+    shortDescription: "Evening celebration featuring manga illustration corners, anime trivia quiz, calligraphy booths, and lantern-lit courtyard stalls.",
+    description: "A Japanese pop-culture and cultural evening with an anime trivia quiz, manga illustration corner, beginner-friendly calligraphy activities, and traditional games. Inspired by campus cultural society traditions with glowing lanterns and open courtyard booths.",
+    featured: false,
+    registrationOpen: true,
+    sourceType: "k-explore-demo"
+  }
+];
